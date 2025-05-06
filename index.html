@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопросы и ответы о счетчиках воды и электричества</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .accordion-item {
+            transition: all 0.3s ease;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+        .accordion-item.active .accordion-header {
+            color: #1C87E0;
+        }
+        .search-box:focus {
+            outline: 2px solid #1C87E0;
+        }
+        .back-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .helpful-btn:hover {
+            transform: scale(1.1);
+        }
+        .category-header {
+            position: relative;
+        }
+        .category-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, #1C87E0, transparent);
+        }
+    </style>
+</head>
+<body class="bg-white font-sans text-gray-800">
+<div class="container mx-auto px-4 py-8 max-w-6xl">
+    <!-- Breadcrumbs -->
+    <nav class="text-sm mb-6" aria-label="Breadcrumb">
+        <ol class="list-none p-0 inline-flex">
+            <li class="flex items-center">
+                <a href="#" class="text-blue-600 hover:text-blue-800">Главная</a>
+                <svg class="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
+            </li>
+            <li class="flex items-center">
+                <a href="#" class="text-blue-600 hover:text-blue-800">Поддержка</a>
+                <svg class="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
+            </li>
+            <li class="flex items-center">
+                <span class="text-gray-500">Частые вопросы</span>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Часто задаваемые вопросы</h1>
+        <p class="text-gray-600">Найдите ответы на популярные вопросы о счетчиках воды и электричества</p>
+    </div>
+
+    <!-- Search -->
+    <div class="mb-10">
+        <div class="relative">
+            <input type="text" placeholder="Поиск по вопросам..." class="w-full px-4 py-3 border border-gray-300 rounded-lg search-box focus:border-blue-500 pl-12">
+            <div class="absolute left-3 top-3 text-gray-400">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popular Questions -->
+    <div class="mb-12 bg-blue-50 rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Популярные вопросы</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <a href="#installation" class="block p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center">
+                    <div class="bg-blue-100 p-2 rounded-full mr-3">
+                        <i class="fas fa-bolt text-blue-600"></i>
+                    </div>
+                    <span class="font-medium">Как установить новый счетчик?</span>
+                </div>
+            </a>
+            <a href="#maintenance" class="block p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center">
+                    <div class="bg-blue-100 p-2 rounded-full mr-3">
+                        <i class="fas fa-tools text-blue-600"></i>
+                    </div>
+                    <span class="font-medium">Как часто нужно проверять счетчики?</span>
+                </div>
+            </a>
+            <a href="#technical" class="block p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center">
+                    <div class="bg-blue-100 p-2 rounded-full mr-3">
+                        <i class="fas fa-cog text-blue-600"></i>
+                    </div>
+                    <span class="font-medium">Что делать, если счетчик показывает неверные данные?</span>
+                </div>
+            </a>
+            <a href="#payment" class="block p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center">
+                    <div class="bg-blue-100 p-2 rounded-full mr-3">
+                        <i class="fas fa-credit-card text-blue-600"></i>
+                    </div>
+                    <span class="font-medium">Какие есть способы оплаты за замену счетчика?</span>
+                </div>
+            </a>
+            <a href="#special" class="block p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center">
+                    <div class="bg-blue-100 p-2 rounded-full mr-3">
+                        <i class="fas fa-exclamation-circle text-blue-600"></i>
+                    </div>
+                    <span class="font-medium">Что делать, если счетчик поврежден в результате аварии?</span>
+                </div>
+            </a>
+            <a href="#special" class="block p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center">
+                    <div class="bg-blue-100 p-2 rounded-full mr-3">
+                        <i class="fas fa-clock text-blue-600"></i>
+                    </div>
+                    <span class="font-medium">Сколько времени занимает установка счетчика?</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- FAQ Categories -->
+    <div class="space-y-10">
+        <!-- Installation and Replacement -->
+        <div id="installation" class="category-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 category-header pb-2">Установка и замена</h2>
+            <div class="space-y-4">
+                <!-- Question 1 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как установить новый счетчик воды или электричества?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Установку счетчиков должны выполнять квалифицированные специалисты. Вы можете подать заявку на нашем сайте или по телефону. Мастер приедет в удобное для вас время, установит счетчик и проверит его работу. После установки вам выдадут акт ввода в эксплуатацию.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Сколько стоит установка нового счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Стоимость установки зависит от типа счетчика и сложности работ. В среднем, установка водяного счетчика стоит от 2000 до 4000 рублей, электрического - от 2500 до 5000 рублей. Точную стоимость вам назовет мастер после осмотра места установки.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Какие документы нужны для замены счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Для замены счетчика вам потребуется паспорт, документы на квартиру (свидетельство о собственности или договор найма) и технический паспорт старого счетчика (если он сохранился). После замены вам выдадут акт выполненных работ и паспорт на новый счетчик.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Можно ли установить счетчик самостоятельно?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Самостоятельная установка счетчиков не рекомендуется, особенно для электрических счетчиков, так как это требует специальных знаний и может быть опасно. Кроме того, самостоятельно установленные счетчики могут не быть приняты в эксплуатацию управляющей компанией.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Сколько времени занимает установка счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Установка одного счетчика обычно занимает от 30 минут до 2 часов в зависимости от сложности работ. Если требуется замена труб или электропроводки, время может увеличиться. Мастер заранее предупредит вас о предполагаемой продолжительности работ.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Какие счетчики лучше выбрать?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Мы рекомендуем выбирать счетчики с классом точности не ниже 1.0 для электричества и класса B для воды. Для квартир хорошо подходят многотарифные электросчетчики и счетчики воды с импульсным выходом. Наши специалисты помогут вам подобрать оптимальный вариант.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Нужно ли отключать воду/электричество для установки счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Да, для установки или замены счетчиков требуется временное отключение воды или электричества. Наши мастера заранее предупредят вас о необходимости отключения и помогут скоординировать этот процесс с управляющей компанией.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Даете ли вы гарантию на установленные счетчики?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Да, мы предоставляем гарантию 3 года на все установленные счетчики и 1 год на работы по их монтажу. В случае возникновения проблем в течение гарантийного периода мы бесплатно устраним неисправности или заменим счетчик.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Maintenance and Repair -->
+        <div id="maintenance" class="category-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 category-header pb-2">Обслуживание и ремонт</h2>
+            <div class="space-y-4">
+                <!-- Question 1 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как часто нужно проверять счетчики?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Счетчики воды должны проходить поверку каждые 4-6 лет в зависимости от модели, электросчетчики - каждые 8-16 лет. Точный межповерочный интервал указан в паспорте счетчика. Мы рекомендуем проверять работоспособность счетчиков самостоятельно раз в месяц.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Что делать, если счетчик перестал работать?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Если счетчик перестал работать, немедленно сообщите об этом в управляющую компанию и подайте заявку на ремонт или замену. До приезда мастера фиксируйте показания счетчика (если это возможно) и не пытайтесь ремонтировать его самостоятельно.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как очистить счетчик воды от накипи?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Не рекомендуется самостоятельно очищать счетчик от накипи, так как это может повредить механизм. Лучше обратиться к специалистам для профессиональной очистки или замены счетчика. Для профилактики накипи можно установить фильтр грубой очистки перед счетчиком.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Можно ли отремонтировать счетчик вместо замены?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>В большинстве случаев ремонт счетчиков нецелесообразен, так как стоимость ремонта может превышать стоимость нового счетчика. Кроме того, после ремонта счетчик должен пройти поверку, что также требует дополнительных расходов. Мы рекомендуем замену в случае неисправности.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как продлить срок службы счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Для продления срока службы счетчика воды установите фильтр грубой очистки, избегайте гидроударов и резких перепадов давления. Для электросчетчиков важно обеспечить хорошую вентиляцию и защиту от влаги. Регулярно проверяйте состояние счетчиков и своевременно проводите поверки.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Кто должен менять счетчик в муниципальной квартире?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>В муниципальной квартире замена счетчиков осуществляется за счет муниципалитета, но инициатором замены должен выступать наниматель. Вам нужно обратиться в управляющую компанию или ЖЭК с заявлением о необходимости замены счетчика. Мы можем помочь с оформлением документов.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Что делать, если управляющая компания требует замены счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Если управляющая компания требует замены счетчика, уточните причину (окончание срока службы, неисправность, истечение межповерочного интервала). Вы имеете право самостоятельно выбрать организацию для замены счетчика. После замены обязательно получите акт ввода в эксплуатацию.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Questions -->
+        <div id="technical" class="category-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 category-header pb-2">Технические вопросы</h2>
+            <div class="space-y-4">
+                <!-- Question 1 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Что делать, если счетчик показывает неверные данные?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Если вы подозреваете, что счетчик показывает неверные данные, сначала проверьте, нет ли утечек воды или незарегистрированных потребителей электроэнергии. Затем обратитесь в управляющую компанию для проведения проверки. При подтверждении неисправности счетчик подлежит замене.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как снять показания с многотарифного электросчетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>На многотарифном счетчике обычно есть кнопка переключения между тарифами. Нажимая ее, вы увидите показания для каждого тарифа (Т1 - дневной, Т2 - ночной, Т3 - полупиковый и т.д.). Запишите все показания и передайте их в энергосбытовую компанию. В паспорте счетчика есть подробная инструкция.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Почему счетчик воды крутится, когда вода не используется?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Если счетчик крутится без водопотребления, возможны три причины: утечка в системе (проверьте все краны и сливные бачки), неисправность счетчика или гидроудары в системе. Перекройте все краны и понаблюдайте за счетчиком. Если проблема не исчезнет, обратитесь к специалисту.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как работает дистанционное снятие показаний?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Счетчики с дистанционным снятием показаний оснащены радиомодулем, который передает данные на коллектор, установленный в доме. Данные затем отправляются в управляющую компанию. Для работы такой системы не требуется ваше участие, но вы можете в любой момент проверить показания на дисплее счетчика.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Можно ли установить счетчик на улице?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Электросчетчики можно устанавливать на улице только в специальных шкафах с подогревом и защитой от влаги. Счетчики воды на улице устанавливать нельзя из-за риска замерзания. Если счетчик необходимо вынести за пределы квартиры, он должен быть установлен в отапливаемом помещении (подъезде, техническом этаже).</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Что такое "умные" счетчики и чем они лучше?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>"Умные" счетчики автоматически передают показания, позволяют отслеживать потребление в реальном времени, обнаруживают утечки и неисправности. Они экономят ваше время и помогают контролировать расход ресурсов. Такие счетчики дороже обычных, но со временем окупаются за счет точного учета и предотвращения переплат.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как проверить точность счетчика в домашних условиях?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Для воды: закройте все краны, запомните показания, наберите 10 литров воды (по мерной емкости) и сравните с показаниями счетчика. Для электричества: отключите все приборы, включите лампу накаливания 100Вт на 1 час - счетчик должен показать около 0,1 кВт·ч. Эти методы дают приблизительную оценку.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment and Documentation -->
+        <div id="payment" class="category-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 category-header pb-2">Оплата и документы</h2>
+            <div class="space-y-4">
+                <!-- Question 1 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Какие есть способы оплаты за замену счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Мы принимаем наличные, банковские карты (Visa, Mastercard, Мир), безналичный расчет для юридических лиц, а также платежи через Сбербанк Онлайн и другие банковские приложения. Возможна рассрочка на 3 месяца без процентов при условии первоначального взноса 50%.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Можно ли получить налоговый вычет за установку счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Да, вы можете получить налоговый вычет в размере 13% от стоимости счетчика и работ по его установке, если счетчик соответствует требованиям энергоэффективности. Для этого сохраните все чеки и договор, а затем подайте декларацию 3-НДФЛ в налоговую инспекцию.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Какие документы выдаются после установки счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>После установки вы получите: договор на выполнение работ, акт выполненных работ, паспорт на счетчик с отметкой о вводе в эксплуатацию, гарантийный талон, инструкцию по эксплуатации. Эти документы необходимы для регистрации счетчика в управляющей компании.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как оформить рассрочку на установку счетчика?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Для оформления рассрочки вам нужно предоставить паспорт, ИНН и заполнить заявление в нашем офисе. Рассрочка предоставляется на 3 месяца без процентов при первоначальном взносе 50%. Первый платеж вносится в день установки счетчика, остальные - равными частями в течение двух месяцев.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Cases -->
+        <div id="special" class="category-section">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 category-header pb-2">Особые случаи</h2>
+            <div class="space-y-4">
+                <!-- Question 1 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Что делать, если счетчик поврежден в результате аварии?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>При повреждении счетчика в результате аварии (затопление, пожар, механическое воздействие) немедленно сообщите об этом в аварийную службу и управляющую компанию. Сфотографируйте повреждения. Если авария произошла по вине третьих лиц, требуйте от них компенсации. Мы можем помочь с экспертизой и заменой счетчика.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как быть, если счетчик установлен в труднодоступном месте?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Если счетчик установлен в труднодоступном месте (высоко под потолком, за мебелью и т.д.), вы можете обратиться в управляющую компанию с просьбой о его переносе. Мы также оказываем услуги по переносу счетчиков в более удобное место с соблюдением всех технических требований.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Можно ли установить счетчик, если в квартире сделан перепланировка?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>Если перепланировка узаконена (есть соответствующее разрешение), установка счетчика возможна. При незаконной перепланировке сначала нужно ее узаконить или вернуть исходное состояние. В любом случае, место установки счетчика должно соответствовать техническим требованиям.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="accordion-header cursor-pointer p-4 flex justify-between items-center bg-white">
+                        <h3 class="font-semibold">Как быть, если я купил квартиру со старым счетчиком?</h3>
+                        <i class="fas fa-plus text-blue-600 transition-transform"></i>
+                    </div>
+                    <div class="accordion-content px-4 bg-gray-50">
+                        <div class="pb-4 pt-2">
+                            <p>При покупке квартиры со старым счетчиком проверьте дату его последней поверки и состояние. Если срок поверки истек или счетчик неисправен, вы имеете право заменить его за свой счет. Сохраните все документы на старый счетчик - они могут понадобиться для сверки показаний.</p>
+                            <div class="mt-4 flex items-center space-x-4">
+                                <span class="text-sm text-gray-500">Был ли этот ответ полезен?</span>
+                                <button class="helpful-btn text-green-600 hover:text-green-700 transition-transform">
+                                    <i class="fas fa-thumbs-up"></i>
+                                </button>
+                                <button class="helpful-btn text-red-600 hover:text-red-700 transition-transform">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </div>
+                            <button class="mt-4 bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-lg transition-colors">
+                                Связаться с нами
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="mt-12 bg-blue-50 rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Не нашли ответ на свой вопрос?</h2>
+        <p class="text-gray-600 mb-4">Наша служба поддержки готова помочь вам с любыми вопросами о счетчиках воды и электричества.</p>
+        <button class="bg-red-800 hover:bg-red-900 text-white px-6 py-3 rounded-lg transition-colors font-medium">
+            <i class="fas fa-phone-alt mr-2"></i> Связаться с нами
+        </button>
+    </div>
+</div>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="back-to-top fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+    // Accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const item = header.parentElement;
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('i');
+
+            item.classList.toggle('active');
+
+            if (item.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.classList.replace('fa-plus', 'fa-minus');
+            } else {
+                content.style.maxHeight = '0';
+                icon.classList.replace('fa-minus', 'fa-plus');
+            }
+        });
+    });
+
+    // Back to top button
+    const backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Helpful buttons functionality
+    document.querySelectorAll('.helpful-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const isHelpful = this.classList.contains('fa-thumbs-up');
+            alert(`Спасибо за ваш отзыв! Ответ был помечен как ${isHelpful ? 'полезный' : 'неполезный'}.`);
+        });
+    });
+
+    // Search functionality
+    const searchBox = document.querySelector('.search-box');
+    searchBox.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        document.querySelectorAll('.accordion-header h3').forEach(question => {
+            const questionText = question.textContent.toLowerCase();
+            const item = question.closest('.accordion-item');
+
+            if (questionText.includes(searchTerm)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+</body>
+</html>
