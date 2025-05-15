@@ -48,6 +48,155 @@
             height: 1px;
             background: linear-gradient(90deg, #1C87E0, transparent);
         }
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            /* Container adjustments */
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            /* Header and text sizing */
+            h1 {
+                font-size: 1.75rem;
+                line-height: 2rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            /* Popular questions grid - stack on mobile */
+            .grid.grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+
+            /* Breadcrumbs improvement */
+            nav[aria-label="Breadcrumb"] {
+                font-size: 0.75rem;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Accordion items */
+            .accordion-header {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .accordion-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            /* Category headers */
+            .category-header {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Back to top button positioning */
+            #back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 3rem;
+                height: 3rem;
+            }
+
+            /* Contact section adjustments */
+            .bg-blue-50 p {
+                font-size: 0.9rem;
+            }
+
+            /* Helpful buttons spacing */
+            .helpful-btn {
+                padding: 0.25rem;
+            }
+
+            /* Search box */
+            .search-box {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        @media (max-width: 640px) {
+            /* Extra small screens */
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            /* Popular questions cards */
+            .block.p-3 {
+                padding: 0.75rem;
+            }
+
+            /* Accordion headers for small screens */
+            .accordion-header {
+                position: relative; /* Important! This keeps the icon contained */
+                padding-right: 3rem; /* Space for the icon */
+            }
+
+            .accordion-header h3 {
+                font-size: 0.875rem;
+                padding-right: 0; /* Remove any right padding from h3 */
+            }
+
+            /* Fix for accordion icons */
+            .accordion-header > i {
+                position: absolute;
+                right: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                flex-shrink: 0; /* Prevent icon from shrinking */
+            }
+
+            /* Button adjustments */
+            button {
+                font-size: 0.875rem;
+            }
+
+            /* Contact section button */
+            .bg-red-800.px-6.py-3 {
+                padding: 0.75rem 1.5rem;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            /* Increase touch targets */
+            .accordion-header {
+                min-height: 3rem;
+            }
+
+            .helpful-btn {
+                min-width: 2.5rem;
+                min-height: 2.5rem;
+            }
+
+            /* Remove hover effects on touch devices */
+            .hover\:shadow-md:hover {
+                box-shadow: none;
+            }
+
+            /* Better tap highlighting */
+            .accordion-header,
+            button,
+            a {
+                -webkit-tap-highlight-color: rgba(28, 135, 224, 0.2);
+            }
+        }
+
+        /* Smooth scrolling for all devices */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+        }
     </style>
 </head>
 <body class="bg-white font-sans text-gray-800">
@@ -82,6 +231,9 @@
             <div class="absolute left-3 top-3 text-gray-400">
                 <i class="fas fa-search"></i>
             </div>
+            <button id="clear-search" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600 hidden">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
     </div>
 
@@ -897,7 +1049,11 @@
             </div>
         </div>
     </div>
-
+    <!-- Add this after the search div -->
+    <div id="no-results" class="hidden text-center py-8">
+        <i class="fas fa-search text-gray-400 text-4xl mb-4"></i>
+        <p class="text-gray-600">Ничего не найдено по вашему запросу</p>
+    </div>
     <!-- Contact Section -->
     <div class="mt-12 bg-blue-50 rounded-lg p-6">
         <h2 class="text-xl font-semibold text-gray-900 mb-4">Не нашли ответ на свой вопрос?</h2>
@@ -959,20 +1115,59 @@
         });
     });
 
-    // Search functionality
+    // Enhanced search functionality with "no results" message
     const searchBox = document.querySelector('.search-box');
+    const noResultsDiv = document.getElementById('no-results');
+
     searchBox.addEventListener('input', function() {
         const searchTerm = this.value.toLowerCase();
-        document.querySelectorAll('.accordion-header h3').forEach(question => {
-            const questionText = question.textContent.toLowerCase();
-            const item = question.closest('.accordion-item');
+        let visibleCount = 0;
 
-            if (questionText.includes(searchTerm)) {
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            const questionText = item.querySelector('.accordion-header h3').textContent.toLowerCase();
+            const answerText = item.querySelector('.accordion-content p').textContent.toLowerCase();
+
+            if (searchTerm === '' || questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
                 item.style.display = '';
+                visibleCount++;
             } else {
                 item.style.display = 'none';
             }
         });
+
+        // Show/hide categories
+        document.querySelectorAll('.category-section').forEach(section => {
+            const visibleItems = section.querySelectorAll('.accordion-item[style=""]');
+            if (visibleItems.length === 0 && searchTerm !== '') {
+                section.style.display = 'none';
+            } else {
+                section.style.display = '';
+            }
+        });
+
+        // Show/hide "no results" message
+        if (searchTerm !== '' && visibleCount === 0) {
+            noResultsDiv.classList.remove('hidden');
+        } else {
+            noResultsDiv.classList.add('hidden');
+        }
+    });
+
+    const searchInput = document.getElementById('search-input');
+    const clearButton = document.getElementById('clear-search');
+
+    searchInput.addEventListener('input', function() {
+        if (this.value.length > 0) {
+            clearButton.classList.remove('hidden');
+        } else {
+            clearButton.classList.add('hidden');
+        }
+    });
+
+    clearButton.addEventListener('click', function() {
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input'));
+        this.classList.add('hidden');
     });
 </script>
 </body>
