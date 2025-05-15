@@ -232,7 +232,7 @@
                 <i class="fas fa-search"></i>
             </div>
             <button id="clear-search" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600 hidden">
-                <i class="fas fa-times"></i>
+                <i class="fas fa-times"></i>  <!-- This is the X button on the right -->
             </button>
         </div>
     </div>
@@ -1115,19 +1115,33 @@
         });
     });
 
-    // Enhanced search functionality with "no results" message
+    // Enhanced search functionality - with popular questions hiding
     const searchBox = document.querySelector('.search-box');
     const noResultsDiv = document.getElementById('no-results');
+    const popularQuestionsSection = document.querySelector('.mb-12.bg-blue-50'); // Popular questions section
 
     searchBox.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
+        const searchTerm = this.value.toLowerCase().trim();
+        // Split search term into individual words
+        const searchWords = searchTerm.split(/\s+/).filter(word => word.length > 0);
         let visibleCount = 0;
+
+        // Hide/show popular questions based on search
+        if (searchTerm !== '') {
+            popularQuestionsSection.style.display = 'none';
+        } else {
+            popularQuestionsSection.style.display = '';
+        }
 
         document.querySelectorAll('.accordion-item').forEach(item => {
             const questionText = item.querySelector('.accordion-header h3').textContent.toLowerCase();
             const answerText = item.querySelector('.accordion-content p').textContent.toLowerCase();
+            const fullText = questionText + ' ' + answerText;
 
-            if (searchTerm === '' || questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+            // Check if ALL search words are found in the text
+            const isMatch = searchWords.length === 0 || searchWords.every(word => fullText.includes(word));
+
+            if (isMatch) {
                 item.style.display = '';
                 visibleCount++;
             } else {
@@ -1153,6 +1167,7 @@
         }
     });
 
+    // Clear search button functionality
     const searchInput = document.getElementById('search-input');
     const clearButton = document.getElementById('clear-search');
 
@@ -1168,6 +1183,8 @@
         searchInput.value = '';
         searchInput.dispatchEvent(new Event('input'));
         this.classList.add('hidden');
+        // Also show popular questions when clearing
+        popularQuestionsSection.style.display = '';
     });
 </script>
 </body>
